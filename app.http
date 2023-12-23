@@ -1,0 +1,49 @@
+GET  http://localhost:1234/usuarios
+
+###hola
+POST http://localhost:1234/usuarios
+Content-Type: application/json
+
+{
+    
+    "nombre": "Zuka",
+    "email": "queonda2@hotmail.com",
+    "password":"151233"
+
+   
+}
+###
+POST http://localhost:1234/login
+Content-Type: application/json
+
+{
+    
+    "nombre": "Zuka",
+    "email": "queonda2@hotmail.com",
+    "password":"151233"
+
+   
+}
+###
+POST http://localhost:1234/registro
+Content-Type: application/json
+
+{
+    
+    "nombre": "eye",
+    "email": "eye@hotmail.com",
+    "password":"2222",
+    "rol": "register",
+    "permisos": "escritura"
+
+   
+}
+###
+PUT http://localhost:1234/usuarios/2
+Content-Type: application/json
+
+{
+    "nombre": "PEPE POMPIN",
+    "email": "PEPITO@gmail.com",
+    "password": "9885213"
+}
