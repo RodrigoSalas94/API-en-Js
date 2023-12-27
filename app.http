@@ -1,49 +1,50 @@
-GET  http://localhost:1234/usuarios
-
-###hola
-POST http://localhost:1234/usuarios
-Content-Type: application/json
-
-{
-    
-    "nombre": "Zuka",
-    "email": "queonda2@hotmail.com",
-    "password":"151233"
-
-   
-}
+GET http://localhost:1234/usuarios
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU1LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcxMTYzNCwiZXhwIjoxNzAzNzE1MjM0fQ.7-IQ27YRV_aEllAHOM5BDRsvytIIyEWR8pVd7H4gRyQ
 ###
 POST http://localhost:1234/login
 Content-Type: application/json
 
 {
-    
-    "nombre": "Zuka",
-    "email": "queonda2@hotmail.com",
-    "password":"151233"
-
-   
+  "nombre": "Rodrixd",
+  "email": "rodrixd@ejemplo.com",
+  "password": "1231231234567",
+  "roles": ["Admin"],
+  "permisos": {
+    "escritura": true,
+    "lectura": true
+  }
 }
 ###
 POST http://localhost:1234/registro
 Content-Type: application/json
 
 {
-    
-    "nombre": "eye",
-    "email": "eye@hotmail.com",
-    "password":"2222",
-    "rol": "register",
-    "permisos": "escritura"
-
-   
+  "nombre": "asdaaasd",
+  "email": "42aa2445adasd645prueba@444.com",
+  "password": "123asdasd123123123",
+  "roles": ["Admin"],
+  "permisos": {
+    "escritura": true,
+    "lectura": true
+  }
 }
 ###
-PUT http://localhost:1234/usuarios/2
+PUT http://localhost:1234/usuarios/42
 Content-Type: application/json
 
 {
-    "nombre": "PEPE POMPIN",
-    "email": "PEPITO@gmail.com",
-    "password": "9885213"
+  "nombre": "pepe",
+  "email": "45prueba@ejemplo.com",
+  "password": "1231231234567",
+  "roles": ["Admin"],
+  "permisos": {
+    "escritura": true,
+    "lectura": true
+  }
 }
+###
+PUT http://localhost:1234/usuarios/desactivar/52
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQzLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcwOTA0MiwiZXhwIjoxNzAzNzEyNjQyfQ.MOxjbuBABFxdBGTYjaf0de69q9mz6B-9mDCdeguMVAw
+###
+PUT http://localhost:1234/usuarios/reactivar/52
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQzLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcwOTA0MiwiZXhwIjoxNzAzNzEyNjQyfQ.MOxjbuBABFxdBGTYjaf0de69q9mz6B-9mDCdeguMVAw
