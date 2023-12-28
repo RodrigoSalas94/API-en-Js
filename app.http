@@ -1,7 +1,7 @@
-GET http://localhost:1234/usuarios
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU1LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcxMTYzNCwiZXhwIjoxNzAzNzE1MjM0fQ.7-IQ27YRV_aEllAHOM5BDRsvytIIyEWR8pVd7H4gRyQ
+GET http://localhost:1234/api/usuarios
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU2LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzc3MTYwNSwiZXhwIjoxNzAzNzc1MjA1fQ.LpV6DzV6jbe76tO7rHUp0CoH4_eopGHBNp5pghlvb_c
 ###
-POST http://localhost:1234/login
+POST http://localhost:1234/api/login
 Content-Type: application/json
 
 {
@@ -15,12 +15,12 @@ Content-Type: application/json
   }
 }
 ###
-POST http://localhost:1234/registro
+POST http://localhost:1234/api/registro
 Content-Type: application/json
 
 {
-  "nombre": "asdaaasd",
-  "email": "42aa2445adasd645prueba@444.com",
+  "nombre": "asdaaaaaasd",
+  "email": "aaaa@444.com",
   "password": "123asdasd123123123",
   "roles": ["Admin"],
   "permisos": {
@@ -29,7 +29,7 @@ Content-Type: application/json
   }
 }
 ###
-PUT http://localhost:1234/usuarios/42
+PUT http://localhost:1234/api/usuarios/42
 Content-Type: application/json
 
 {
@@ -43,8 +43,8 @@ Content-Type: application/json
   }
 }
 ###
-PUT http://localhost:1234/usuarios/desactivar/52
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQzLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcwOTA0MiwiZXhwIjoxNzAzNzEyNjQyfQ.MOxjbuBABFxdBGTYjaf0de69q9mz6B-9mDCdeguMVAw
+PUT http://localhost:1234/api/usuarios/desactivar/18
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU2LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzc3MTYwNSwiZXhwIjoxNzAzNzc1MjA1fQ.LpV6DzV6jbe76tO7rHUp0CoH4_eopGHBNp5pghlvb_c
 ###
-PUT http://localhost:1234/usuarios/reactivar/52
+PUT http://localhost:1234/api/usuarios/reactivar/18
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQzLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcwOTA0MiwiZXhwIjoxNzAzNzEyNjQyfQ.MOxjbuBABFxdBGTYjaf0de69q9mz6B-9mDCdeguMVAw
