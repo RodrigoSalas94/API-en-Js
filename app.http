@@ -1,5 +1,5 @@
 GET http://localhost:1234/api/usuarios
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU2LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzc3MTYwNSwiZXhwIjoxNzAzNzc1MjA1fQ.LpV6DzV6jbe76tO7rHUp0CoH4_eopGHBNp5pghlvb_c
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYzLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwNDMwMzA4NCwiZXhwIjoxNzA0MzA2Njg0fQ.NW6z4TVHk5X91JhF8R2ZUGLnryR0OWGlLOpMqyDnugY
 ###
 POST http://localhost:1234/api/login
 Content-Type: application/json
@@ -19,8 +19,8 @@ POST http://localhost:1234/api/registro
 Content-Type: application/json
 
 {
-  "nombre": "asdaaaaaasd",
-  "email": "aaaa@444.com",
+  "nombre": "asdaqaasaaasqwedasddasdsdaaaaaaasd",
+  "email": "aaasasdfaaasdaaaaasdaaasdaaa@444.com",
   "password": "123asdasd123123123",
   "roles": ["Admin"],
   "permisos": {
@@ -33,9 +33,9 @@ PUT http://localhost:1234/api/usuarios/42
 Content-Type: application/json
 
 {
-  "nombre": "pepe",
-  "email": "45prueba@ejemplo.com",
-  "password": "1231231234567",
+  "nombre": "aaapaaepe",
+  "email": "no",
+  "password": "123asdaaa1231234567",
   "roles": ["Admin"],
   "permisos": {
     "escritura": true,
@@ -43,8 +43,17 @@ Content-Type: application/json
   }
 }
 ###
-PUT http://localhost:1234/api/usuarios/desactivar/18
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU2LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzc3MTYwNSwiZXhwIjoxNzAzNzc1MjA1fQ.LpV6DzV6jbe76tO7rHUp0CoH4_eopGHBNp5pghlvb_c
+PUT http://localhost:1234/api/usuarios/desactivar/12
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYxLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwNDI0MTI2NCwiZXhwIjoxNzA0MjQ0ODY0fQ.Hvg4ulV_esWF3d-FwKITfk4nAGcOkTS2NcdT6KFvbTw
 ###
-PUT http://localhost:1234/api/usuarios/reactivar/18
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQzLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwMzcwOTA0MiwiZXhwIjoxNzAzNzEyNjQyfQ.MOxjbuBABFxdBGTYjaf0de69q9mz6B-9mDCdeguMVAw
+PUT http://localhost:1234/api/usuarios/reactivar/15
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYxLCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwNDI0MTI2NCwiZXhwIjoxNzA0MjQ0ODY0fQ.Hvg4ulV_esWF3d-FwKITfk4nAGcOkTS2NcdT6KFvbTw
+###
+POST http://localhost:1234/api/roles/asignar-roles/9
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjY0LCJyb2xlcyI6W3sibm9tYnJlIjoiQWRtaW4ifV0sInBlcm1pc29zIjp7ImVzY3JpdHVyYSI6dHJ1ZSwibGVjdHVyYSI6dHJ1ZX0sImlhdCI6MTcwNDMwNDIyNiwiZXhwIjoxNzA0MzA3ODI2fQ.PyATZjmZ0j2y_TLX7eUlBFfJwPhK4GBWJkMrwPHp9UI
+Content-Type: application/json
+
+{
+  "roles": ["Admin"]
+}
+

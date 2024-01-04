@@ -1,8 +1,6 @@
-const pool = require('../connection')
+const pool = require('../connections/connection')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-
-const secretKey = 'rodri1234'
+const jwtUtils = require('../utils/jwtUtils')
 
 const getUsuarios = async (req, res) => {
   try {
@@ -41,7 +39,6 @@ const getUsuarios = async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor', error: error.message })
   }
 }
-
 const registroUsuario = async (req, res) => {
   const { nombre, email, password, roles, permisos } = req.body
 
@@ -56,18 +53,17 @@ const registroUsuario = async (req, res) => {
       return res.status(400).json({ message: 'El nombre ya está registrado' })
     }
 
-    const hashedPassword = await bcrypt.hash(password, 4)
-    const resultUsuario = await pool.query('INSERT INTO usuarios (nombre, email, password) VALUES ($1, $2, $3) RETURNING id', [nombre, email, hashedPassword])
-    const usuarioId = resultUsuario.rows[0].id
+    const { rows: [{ id: usuarioId }] } = await pool.query('INSERT INTO usuarios (nombre, email, password) VALUES ($1, $2, $3) RETURNING id', [nombre, email, await bcrypt.hash(password, 4)])
 
     await Promise.all(roles.map(role => pool.query('INSERT INTO roles (nombre, usuarioid) VALUES ($1, $2)', [role, usuarioId])))
     await pool.query('INSERT INTO permisos (idpermisos, escritura, lectura) VALUES ($1, $2, $3)', [usuarioId, permisos.escritura, permisos.lectura])
 
-    const token = jwt.sign({
+    const tokenPayload = {
       userId: usuarioId,
       roles: roles.map(role => ({ nombre: role })),
-      permisos: { escritura: permisos.escritura, lectura: permisos.lectura }
-    }, secretKey, { expiresIn: '1h' })
+      permisos: { ...permisos }
+    }
+    const token = jwtUtils.generateToken(tokenPayload, jwtUtils.secretKey, { expiresIn: '1h' })
 
     res.json({ token, message: 'Usuario registrado y autenticado correctamente' })
   } catch (error) {
@@ -75,7 +71,6 @@ const registroUsuario = async (req, res) => {
     res.status(500).json({ message: 'Error al registrar usuario', error: error.message })
   }
 }
-
 const loginUsuario = async (req, res) => {
   const { email, password } = req.body
 
@@ -86,8 +81,7 @@ const loginUsuario = async (req, res) => {
       return res.status(401).json({ message: 'Usuario o contraseña incorrectos' })
     }
 
-    const usuarioId = rows[0].id
-    const hashedPassword = rows[0].password
+    const { id: usuarioId, password: hashedPassword } = rows[0]
     const isMatch = await bcrypt.compare(password, hashedPassword)
 
     if (!isMatch) {
@@ -99,11 +93,13 @@ const loginUsuario = async (req, res) => {
     const roles = rolesResult.rows.map(role => ({ nombre: role.nombre }))
     const permisos = permisosResult.rows[0]
 
-    const token = jwt.sign({
+    const tokenPayload = {
       userId: usuarioId,
-      roles,
-      permisos
-    }, secretKey, { expiresIn: '1h' })
+      roles: roles.map(role => ({ nombre: role.nombre })),
+      permisos: { ...permisos }
+    }
+
+    const token = jwtUtils.sign(tokenPayload, jwtUtils.secretKey, { expiresIn: '1h' })
 
     res.json({ token, message: 'Usuario autenticado correctamente' })
   } catch (error) {
@@ -118,10 +114,11 @@ const actualizarUsuario = async (req, res) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 4)
-    const userId = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email])
-    if (userId.length !== 0) {
+    const userId = await pool.query('SELECT * FROM usuarios WHERE email = $1 AND id != $2', [email, id])
+    if (userId.rows.length !== 0) {
       return res.status(400).json({ message: 'El email que intenta ingresar ya existe' })
     }
+
     await pool.query('UPDATE usuarios SET nombre = $1, email = $2, password = $3 WHERE id = $4', [nombre, email, hashedPassword, id])
 
     await pool.query('DELETE FROM roles WHERE usuarioid = $1', [id])
@@ -146,7 +143,7 @@ const desactivarUsuario = async (req, res) => {
   }
 
   try {
-    const decodedToken = jwt.verify(token, secretKey)
+    const decodedToken = jwtUtils.verifyToken(token, jwtUtils.secretKey)
     const roles = decodedToken.roles.map(role => role.nombre)
 
     if (!roles.includes('Admin')) {
@@ -171,7 +168,7 @@ const reactivarUsuario = async (req, res) => {
   }
 
   try {
-    const decodedToken = jwt.verify(token, secretKey)
+    const decodedToken = jwtUtils.verifyToken(token, jwtUtils.secretKey)
     const roles = decodedToken.roles.map(role => role.nombre)
 
     if (!roles.includes('Admin')) {
